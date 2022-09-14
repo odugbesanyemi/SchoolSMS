@@ -11,4 +11,9 @@ let confirmCommand = (e) => {
     }
 
 }
-// user toggle effect
+
+
+// nav pages function
+// what we will achieve is to
+// show a particular page depending on the nav link that is selected
+// first get all the elements of the nav and at the same time the elements of the display

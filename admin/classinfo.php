@@ -26,17 +26,22 @@
 ?>
 
 <div class="page-content col-md-9 col-lg-10">
-    <nav class="navbar bg-dark navbar-dark">
-        <div class="container">
-            <a class="navbar-brand"><img src="../assets/images/kingsmeadlogo.jpg" alt="" width="50"> School Management System</a>
-            <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+    <div class="class-dashboard title py-3 d-flex justify-content-between">
+        <div class=""><h3 class="m-0"><?php echo $class_data[0]['className'] ?></h3><p class="small m-0">Techer: Mrs. Adegbola</p></div>
+        <div class="class-details d-flex flex-row align-items-center justify-content-center text-center">
+            <div class="px-3 border-end">
+                <h5>150</h5>
+                <p class="small">Students</p>
+            </div>
+            <div class="px-3">
+                <h5>150</h5>
+                <p class="small">subjects</p>
+            </div>
+              
         </div>
-    </nav>
+    </div>       
     <section class="row g-0">
-        <div class="left-panel col-md-1 d-flex flex-md-column justify-content-center">
+        <div class="left-panel col-md-1 d-flex flex-md-column justify-content-start border-end">
            <button class="btn p-4">
             <i class="fi fi-br-user-add"></i> <br>
             </button> 
@@ -45,28 +50,79 @@
             </button> 
             <button class="btn p-4">
             <i class="fi fi-rs-receipt"></i> <br>
-            </button>                         
+            </button>    
+            <button class="btn p-4">
+            <i class="fi fi-rr-settings-sliders"></i> <br>
+            </button>                                   
         </div>
-        <div class="right-panel col-md-11">
-            <div class="class-dashboard title py-3 d-flex justify-content-between">
-                <div class=""><h3><?php echo $class_data[0]['className'] ?></h3><p class="small">Techer: Mrs. Adegbola</p></div>
-                <div class="class-details d-flex flex-row align-items-center justify-content-center text-center">
-                    <div class="px-3 border-end">
-                        <h5>150</h5>
-                        <p class="small">Students</p>
-                    </div>
-                    <div class="px-3 border-end">
-                        <h5>150</h5>
-                        <p class="small">subjects</p>
-                    </div>
-                    <div class="mx-3">
-                        <h5>15</h5>
-                        <p class="small">payments type</p>
-                    </div>                
+        <div class="right-panel col-md-11">                
+            <div class="class-students ">
+                <div class="clas-student-head container pb-2 pt-5 px-5">
+                    <h4 class="mb-3">Students</h4>
+                    <p class="text-secondary text-opacity-50">Here, you can view, manage and add students enrolled to this selected class.</p>
                 </div>
-            </div>        
-            <div class="class-students">
                 <!-- this is where we will view and add students to a class -->
+                <div class="container">
+                    <ul class="tab d-flex">
+                        <li>Overview</li>
+                        <li><i class="fi fi-br-plus-small"></i> Add Student</li>
+                    </ul>
+                    <div class="overview">
+                        <div class="container p-4">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <td>Name</td>
+                                            <td>Reg No</td>                        
+                                            <td>gender</td>
+                                            <td>username</td>
+                                            <td>actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $sql = "SELECT * FROM  class_student 
+                                            INNER JOIN class
+                                            ON class_student.classID = class.id
+                                            INNER JOIN student
+                                            ON class_student.studentID = student.id
+                                            lIMIT 10";
+                                            $stmt = mysqli_prepare($conn,$sql);
+                                            mysqli_stmt_execute($stmt);
+                                            $result = mysqli_stmt_get_result($stmt);
+                                            if(mysqli_num_rows($result)>0){
+                                                // meaning there is active data then display the data
+                                                $count=0;
+                                                while($row = mysqli_fetch_array($result)){
+                                                    $count++;
+                                                echo "
+                                                        <a href='classinfo.php?id={$row['id']}'>
+                                                        <tr>
+                                                            <td>{$count}</td>
+                                                            <td>{$row['Name']}</td>
+                                                            <td>{$row['reg_no']}</td>
+                                                            <td>{$row['gender']}</td>
+                                                            <td>{$row['username']}</td>
+                                                            <td class='d-flex flex-row'><a onclick='' href='../form_data/deletedata.php?tbl=class&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
+                                                            </td>
+                                                        </tr>
+                                                        </a>
+                                                ";
+                                                };
+                                            }else{
+                                                // no data in the data base
+                                            }
+                                        ?>                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="addstudent"></div>
+                </div>
             </div>
             <div class="class-subjects"></div>
             <div class="class-payments"></div>            

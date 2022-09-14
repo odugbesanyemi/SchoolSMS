@@ -12,7 +12,9 @@ body {
     overflow-x: hidden;
 }
 
-
+p{
+    font-size:13px !important;
+}
 .bgdark{
     background-color: var(--dark);
 }
@@ -36,9 +38,9 @@ body {
     color: rgba(77, 77, 77, 0.879);
     transition: .4s;
     position: absolute;
-    top: -18px;
+    top: -12px;
     left:5px;
-    background-color:rgb(255, 255, 255) ;
+    background-color:ghostwhite ;
     font-size: 80%;
     padding: 0 10px;
 }
@@ -48,15 +50,15 @@ body {
     border: 1px solid rgba(0, 0, 255, 0.203);
     border-radius: 3px;
     color: rgb(0, 0, 189);
-    background-color: rgba(0, 0, 255, 0.01);
+    background-color: rgba(255, 255, 255, 0.01);
     /* box-shadow: 0 3px 10px rgba(0, 0, 189, 0.076), inset 0 3px 10px rgba(0, 0, 189, 0.05); */
 }
 
 fieldset {
-    border: 1px solid rgba(0, 0, 255, 0.367) !important;
-    border-radius: 3px;
-    color: rgb(0, 0, 189);
-    background-color: rgba(0, 0, 255, 0.01);
+    /* border: 1px solid rgba(205, 205, 205, 0.251) !important; */
+    border-radius: 12px;
+    color: rgb(112, 112, 112);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.032),0 0 25px rgba(0, 0, 0, 0.032);
 }
 
 input:focus ,textarea:focus {
@@ -84,6 +86,7 @@ li {
 
 aside {
     min-height: 100vh !important;
+    border-right:1px solid rgba(0, 0, 0, 0.051);
 }
 
 .sidebar {
@@ -95,13 +98,14 @@ aside {
 
 .sidebar>ul {
     padding: 0!important;
-    margin-top: 100px;
 }
 
 .sidebar li {
     padding: 15px 25px;
     list-style-type: none;
     position: relative;
+    color: rgba(0, 0, 0, 0.406);
+    font-size: 13px;
 }
 .sidebar i{
     margin-right: 10px;
@@ -115,20 +119,13 @@ li>ul {
 }
 
 .sidebar li:hover {
-    background-color: rgba(0, 0, 255, 0.069);
+    /* background-color: rgba(0, 0, 255, 0.069); */
+    border-left: 3px solid var(--dark);
     color: rgb(0, 0, 130);
     transition: .4s ease;
 }
 
-.sidebar li:hover::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    left: 97%;
-    transform: rotate(45deg);
-    background-color: white;
-}
+
 
 .alert {
     position: absolute !important;
@@ -258,26 +255,24 @@ td{
     animation: close-up .5s ease-in-out;
     display: none;
 }
-thead{
-    background-color: var(--dark) !important;
-    color: white;
+thead tr{
+    background-color: rgba(0, 0, 0, 0.028);
+    font-weight: 500;
 }
-tbody{
-    background-color: var(--light);
-    color: var(--dark);
-    margin-bottom: 0;
-    border: 0;
+table{
+    border: 0 !important;
+    outline: none !important;
 }
-tbody tr{
-    border-bottom:1px solid white !important; 
-    outline: none;
+td{
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.098);
+    padding: 20px 10px !important;
 }
 @media screen and (max-width:767px) {
 
 }
 .class-dashboard{
     background: var(--dark);
-    padding:10% 5%;
+    padding:5%;
     color: white;
     display: flex;
     flex-direction: row;
@@ -286,4 +281,41 @@ tbody tr{
 }
 .class-details p,.class-details h5{
     margin: 0;
+}
+.left-panel{
+    min-height: 100vh;
+    /* box-shadow: -10px 0 10px rgba(0, 0, 0, 0.027); */
+}
+.left-panel button{
+    border-radius: 0 !important;
+    border: 0;
+    position: relative;
+}
+.left-panel button:hover{
+    background-color:rgba(0, 0, 0, 0.027) !important;
+    color: var(--dark) !important;
+    box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.02);
+}
+.left-panel button:hover::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 94%;
+    transform: rotate(45deg);
+    background-color: ghostwhite;
+}
+.tab{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.095);
+}
+.tab li{
+    padding: 15px 15px;
+    color: rgba(0, 0, 0, 0.278);
+    font-size: 13px;
+}
+.tab li:hover{
+    border-bottom: 2px solid var(--dark);
+    color: black;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.027);
 }

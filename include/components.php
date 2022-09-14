@@ -20,7 +20,16 @@
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
                 <title>{$title}</title>
             </head>
-            <body class='row g-0'> 
+            <body class='row g-0'>
+            <nav class='navbar bg-dark navbar-dark'>
+                <div class='container-fluid'>
+                    <a class='navbar-brand'><img src='../assets/images/kingsmeadlogo.jpg' alt='' width='50' class='rounded rounded-pill'> School Management System</a>
+                    <form class='d-flex' role='search'>
+                    <input class='form-control me-2' type='search' placeholder='Search' aria-label='Search'>
+                    <button class='btn btn-outline-success' type='submit'>Search</button>
+                    </form>
+                </div>
+            </nav>         
         "           
         );
     }
@@ -38,7 +47,7 @@ function footer(){
 }
 function sidebar(){
     echo"
-        <aside class='sidebar bg-light col-2 col-md-3 col-lg-2'>
+        <aside class='sidebar col-2 col-md-3 col-lg-2'>
             <ul class=''>
                 <a href='../dashboard.php' id='ms'><li><i class='fa fa-dashboard' aria-hidden='true'></i> My Dashboard</li></a>
                 <a href='../manageSession.php' id='ms'><li><i class='fa fa-wrench' aria-hidden='true'></i> Manage Session</li></a>
@@ -52,7 +61,7 @@ function sidebar(){
 }
 function adminsidebar(){
     echo"
-        <aside class='sidebar bglight col-2 col-md-3 col-lg-2 d-none d-md-block'>
+        <aside class='sidebar col-2 col-md-3 col-lg-2 d-none d-md-block'>
             <ul class=''>
                 <a href='../admin/index.php' id='ms'><li><i class='fi fi-rr-home' aria-hidden='true'></i> My Dashboard</li></a>
                 <a href='../admin/class.php' id='ms'><li><i class='fi fi-rs-presentation' aria-hidden='true'></i>Class</li></a>

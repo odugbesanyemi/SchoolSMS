@@ -18,22 +18,13 @@
 ?>
 
 <div class="page-content col-md-9 col-lg-10">
-    <nav class="navbar bg-dark navbar-dark">
-        <div class="container">
-            <a class="navbar-brand"><img src="../assets/images/kingsmeadlogo.jpg" alt="" width="50"> School Management System</a>
-            <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
     <section class="container" style="padding:5%">
         <div class="title py-3 d-flex justify-content-between">
             <h3>Manage Classes</h3>
             <button class="toggleBtn "><i class="fa fa-plus me-2" aria-hidden="true"></i> Add new</button>
         </div>        
-        <div class="mt-1 list-session border table-responsive">
-            <table class="table" id="example">
+        <div class="mt-1 list-session table-responsive">
+            <table class="table id="example">
                 <thead>
                     <tr>
                         <td>S/N</td>
