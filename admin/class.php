@@ -33,7 +33,7 @@
             <button class="toggleBtn "><i class="fa fa-plus me-2" aria-hidden="true"></i> Add new</button>
         </div>        
         <div class="mt-1 list-session border table-responsive">
-            <table class="table">
+            <table class="table" id="example">
                 <thead>
                     <tr>
                         <td>S/N</td>

@@ -15,6 +15,14 @@
     myHeader('Admin | Manage class');
     Adminsidebar();
     errorDialogue();
+
+    // get data from the classid get property
+    $sql = "SELECT * FROM class WHERE id = {$_GET['classid']}";
+    $query = mysqli_query($conn,$sql);
+    $class_data = [];
+    while($row = mysqli_fetch_assoc($query)){
+        array_push($class_data,$row);
+    }
 ?>
 
 <div class="page-content col-md-9 col-lg-10">
@@ -27,10 +35,42 @@
             </form>
         </div>
     </nav>
-    <section class="container" style="padding:5%">
-        <div class="title py-3 d-flex justify-content-between">
-            <h3>Grade 3</h3>
-        </div>        
+    <section class="row g-0">
+        <div class="left-panel col-md-1 d-flex flex-md-column justify-content-center">
+           <button class="btn p-4">
+            <i class="fi fi-br-user-add"></i> <br>
+            </button> 
+            <button class="btn p-4">
+            <i class="fi fi-rr-books"></i> <br>
+            </button> 
+            <button class="btn p-4">
+            <i class="fi fi-rs-receipt"></i> <br>
+            </button>                         
+        </div>
+        <div class="right-panel col-md-11">
+            <div class="class-dashboard title py-3 d-flex justify-content-between">
+                <div class=""><h3><?php echo $class_data[0]['className'] ?></h3><p class="small">Techer: Mrs. Adegbola</p></div>
+                <div class="class-details d-flex flex-row align-items-center justify-content-center text-center">
+                    <div class="px-3 border-end">
+                        <h5>150</h5>
+                        <p class="small">Students</p>
+                    </div>
+                    <div class="px-3 border-end">
+                        <h5>150</h5>
+                        <p class="small">subjects</p>
+                    </div>
+                    <div class="mx-3">
+                        <h5>15</h5>
+                        <p class="small">payments type</p>
+                    </div>                
+                </div>
+            </div>        
+            <div class="class-students">
+                <!-- this is where we will view and add students to a class -->
+            </div>
+            <div class="class-subjects"></div>
+            <div class="class-payments"></div>            
+        </div>
 
     </section>
     <footer></footer>    

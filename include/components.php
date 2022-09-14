@@ -8,7 +8,12 @@
                 <meta charset='UTF-8'>
                 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
                 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'> 
+                <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>                               
+                <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>                
                 <link rel='stylesheet' href='../style/main.css'>
+                <link href='https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css' rel='stylesheet'>
+                <link href = 'https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css' rel= 'stylesheet'>
                 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
                 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>    
                 <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
@@ -24,6 +29,9 @@ function footer(){
     echo "
     </body>
         <script src ='../js/main.js'> </script>
+        <script src ='../js/app.js'> </script>
+        <script src='https://code.jquery.com/jquery-3.6.1.min.js' integrity='sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=' crossorigin='anonymous'></script>
+        <script type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>    
     </html>
     ";
@@ -46,8 +54,8 @@ function adminsidebar(){
     echo"
         <aside class='sidebar bglight col-2 col-md-3 col-lg-2 d-none d-md-block'>
             <ul class=''>
-                <a href='../admin/index.php' id='ms'><li><i class='fa fa-dashboard' aria-hidden='true'></i> My Dashboard</li></a>
-                <a href='../admin/class.php' id='ms'><li><i class='fa fa-bookmark-o' aria-hidden='true'></i>Class</li></a>
+                <a href='../admin/index.php' id='ms'><li><i class='fi fi-rr-home' aria-hidden='true'></i> My Dashboard</li></a>
+                <a href='../admin/class.php' id='ms'><li><i class='fi fi-rs-presentation' aria-hidden='true'></i>Class</li></a>
                 <a href='../admin/teachers.php' id=''><li><i class='fa fa-users' aria-hidden='true'></i> Teachers</li></a>
                 <a href='../admin/students.php' id='s'><li><i class='fa fa-mortar-board' aria-hidden='true'></i> Students</li></a>
                 <a href='../admin/Subjects.php'><li><i class='fa fa-book' aria-hidden='true'></i>Subjects</li></a>

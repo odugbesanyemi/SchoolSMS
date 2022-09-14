@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 body {
-    background-color: goldenrod;
+    background-color: ghostwhite !important;
+    font-family: 'rubik', sans-serif!important;
+   
 }
 :root{
     --background:rgba(67, 105, 255, 0.598);
     --dark:darkslateblue;
     --light:rgba(0, 0, 255, 0.069);
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
+
+
 .bgdark{
     background-color: var(--dark);
 }
@@ -267,4 +274,16 @@ tbody tr{
 }
 @media screen and (max-width:767px) {
 
+}
+.class-dashboard{
+    background: var(--dark);
+    padding:10% 5%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.class-details p,.class-details h5{
+    margin: 0;
 }
