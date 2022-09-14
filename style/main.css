@@ -328,10 +328,18 @@ td{
     padding: 15px 15px;
     color: rgba(0, 0, 0, 0.278);
     font-size: 13px;
+    min-width:150px;
 }
 .tab li:hover{
     border-bottom: 2px solid var(--dark);
     color: black;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.027);
+}
+.tab-active{
+    border-bottom: 2px solid var(--dark);
+    color: var(--dark) !important;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.027);
+    border-radius: 10px 10px 0 0;    
 }
