@@ -17,3 +17,12 @@ let confirmCommand = (e) => {
 // what we will achieve is to
 // show a particular page depending on the nav link that is selected
 // first get all the elements of the nav and at the same time the elements of the display
+
+let tabCollapse =(tabGroup,viewGroup)=>{
+    let tabGroup = document.querySelectorAll(`#${tabGroup}`)
+    let viewGroup = document.querySelectorAll(`#${viewGroup}`)
+
+
+}
+
+tabCollapse()

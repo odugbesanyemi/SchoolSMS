@@ -41,18 +41,18 @@
         </div>
     </div>       
     <section class="row g-0">
-        <div class="left-panel col-md-1 d-flex flex-md-column justify-content-start border-end">
-           <button class="btn p-4">
-            <i class="fi fi-br-user-add"></i> <br>
+        <div class="left-panel col-md-1 d-flex flex-md-column justify-content-start border-end" id="tabPanel">
+            <button class="btn p-4 inview">
+                <i class="fi fi-br-user-add"></i> <br>
             </button> 
             <button class="btn p-4">
-            <i class="fi fi-rr-books"></i> <br>
+                <i class="fi fi-rr-books"></i> <br>
             </button> 
             <button class="btn p-4">
-            <i class="fi fi-rs-receipt"></i> <br>
+                <i class="fi fi-rs-receipt"></i> <br>
             </button>    
             <button class="btn p-4">
-            <i class="fi fi-rr-settings-sliders"></i> <br>
+                <i class="fi fi-rr-settings-sliders"></i> <br>
             </button>                                   
         </div>
         <div class="right-panel col-md-11">                

@@ -296,7 +296,23 @@ td{
     color: var(--dark) !important;
     box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.02);
 }
-.left-panel button:hover::before {
+.inview{
+    border-radius:0 !important;
+    border: 0;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: var(--dark)!important;
+}
+.inview::before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 94%;
+    transform: rotate(45deg);
+    background-color: rgb(248, 248, 255);
+}
+.left-panel button:hover::before{
     content: "";
     width: 20px;
     height: 20px;
