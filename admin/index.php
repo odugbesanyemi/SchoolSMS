@@ -16,7 +16,7 @@
     errorDialogue();
 ?>
 
-<div class="page-content col-md-9 col-lg-10">
+<div class="page-content">
     <section class="container" style="padding:5%">
         <div class= "jumbotron py-3">
             <h2>Welcome Admin</h2>

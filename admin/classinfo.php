@@ -1,5 +1,8 @@
 <?php
     session_start();
+    include('../include/dbconnect.php');
+    include ("../include/components.php");    
+    errorDialogue();    
     $error = [];
     if($_SESSION['logged_in']==true && $_SESSION['usertype']=="admin"){
         // meaning the user is logged in
@@ -10,12 +13,15 @@
         array_push($error,"Unauthorised Access!");
         $_SESSION['error'] = $error;
     }
-    include('../include/dbconnect.php');
-    include ("../include/components.php");
+    if(!isset($_GET['classid'])){
+        array_push($error,'Fatal Error, Contact the Administrator');
+        $_SESSION['error']=$error;
+        header("location:./");
+    }    
     myHeader('Admin | Manage class');
     Adminsidebar();
-    errorDialogue();
-    
+
+
     // get data from the classid get property
     $sql = "SELECT * FROM class WHERE id = ?";
     $stmt = mysqli_prepare($conn,$sql);
@@ -24,12 +30,18 @@
     mysqli_stmt_execute($stmt);
     $query = mysqli_stmt_get_result($stmt);
     $class_data = [];
-    while($row = mysqli_fetch_assoc($query)){
-        array_push($class_data,$row);
+    if(mysqli_num_rows($query) == 0){
+        die("No data Found!!");
+        echo('hello error');
+    }else{
+        while($row = mysqli_fetch_array($query)){
+            array_push($class_data,$row);
+        }        
     }
+
 ?>
 
-<div class="page-content col-md-9 col-lg-10">
+<div class="page-content">
     <div class="class-dashboard title py-3 d-flex justify-content-between">
         <div class=""><h3 class="m-0"><?php echo $class_data[0]['className'] ?></h3><p class="small m-0">Techer: Mrs. Adegbola</p></div>
         <div class="class-details d-flex flex-row align-items-center justify-content-center text-center">
@@ -54,10 +66,7 @@
             </button> 
             <button class="btn p-4" id="class_payments">
                 <i class="fi fi-rs-receipt"></i> <br>
-            </button>    
-            <button class="btn p-4" id="class_settings">
-                <i class="fi fi-rr-settings-sliders"></i> <br>
-            </button>                                   
+            </button>                                    
         </div>
         <div class="right-panel col-md-11" id="panelView">                
             <div class="" data-id="class_students">
@@ -130,20 +139,9 @@
 
                 </div>
             </div>
-            <div class="collapse" data-id="class_subjects">
-                
+            <div class="collapse" data-id="class_subjects"> 
             </div>
-            <div class="collapse" data-id="class_payments"></div>            
-            <div class="collapse" data-id="class_settings">
-                <div class="clas-student-head container pb-2 pt-5 px-5">
-                    <h4 class="mb-3">Settings</h4>
-                    <p class="text-secondary text-opacity-50">Here, you can configure the data displayed. change Session and term displayed.</p>
-                </div>
-                <!-- this is where we will view and add students to a class -->
-                <div class="container">
- 
-                </div>                
-            </div>            
+            <div class="collapse" data-id="class_payments"></div>                   
         </div>
     </section>
     <footer></footer>    

@@ -5,9 +5,8 @@
     myHeader('Manage Admin');
     errorDialogue();
 ?>
-
+<div></div>
 <div class="page-content col-md-12 col-lg-12">
-
     <section class="container" style="padding:5%">
         <div class= "jumbotron py-3 text-center">
             <h2>Sign In</h2>

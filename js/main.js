@@ -1,3 +1,4 @@
+
 let confirmCommand = (e) => {
     let res = confirm('Are you sure!, this cannot be revoked.')
     if (res === true) {
@@ -46,4 +47,3 @@ let tabCollapse =(tabGroup,viewGroup,par)=>{
 
 tabCollapse('tabPanel>button', 'panelView>div', 'inview');
 tabCollapse('tab>li','tabview>div','tab-active');
-

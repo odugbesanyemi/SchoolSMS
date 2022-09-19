@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 body {
-    background-color: ghostwhite !important;
+    background-color: rgb(255, 255, 255) !important;
     font-family: 'rubik', sans-serif!important;
-   
 }
 :root{
     --background:rgba(67, 105, 255, 0.598);
@@ -11,7 +10,14 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
-
+body{
+    font-size: 0.8rem !important;
+    display: grid;
+    grid-template-columns: 20% auto 15%;
+}
+body>nav{
+    grid-column: 1 / span 3;
+}
 p{
     font-size:13px !important;
 }
@@ -40,11 +46,13 @@ p{
     position: absolute;
     top: -12px;
     left:5px;
-    background-color:ghostwhite ;
+    background-color:rgb(255, 255, 255) ;
     font-size: 80%;
     padding: 0 10px;
 }
-
+h3{
+    margin:0px;
+}
 .form-group input,.form-group select,.form-group textarea{
     padding: 10px 15px;
     border: 1px solid rgba(0, 0, 255, 0.203);
@@ -58,7 +66,6 @@ fieldset {
     /* border: 1px solid rgba(205, 205, 205, 0.251) !important; */
     border-radius: 12px;
     color: rgb(112, 112, 112);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.032),0 0 25px rgba(0, 0, 0, 0.032);
 }
 
 input:focus ,textarea:focus {
@@ -86,12 +93,10 @@ li {
 
 aside {
     min-height: 100vh !important;
-    border-right:1px solid rgba(0, 0, 0, 0.051);
 }
 
 .sidebar {
-    margin-top: 70px;
-    padding: 0 15px;
+    padding: 50px 5% 50px 0;
     list-style-type: none;
     z-index: 0;
 }
@@ -104,8 +109,8 @@ aside {
     padding: 15px 25px;
     list-style-type: none;
     position: relative;
-    color: rgba(0, 0, 0, 0.406);
-    font-size: 13px;
+    color: rgba(0, 0, 0, 0.825);
+    border-radius:0 50px 50px 0 ;
 }
 .sidebar i{
     margin-right: 10px;
@@ -119,13 +124,12 @@ li>ul {
 }
 
 .sidebar li:hover {
-    /* background-color: rgba(0, 0, 255, 0.069); */
     border-left: 3px solid var(--dark);
-    color: rgb(0, 0, 130);
+    color: rgb(12, 12, 12);
     transition: .4s ease;
+    background-color: rgba(0, 0, 0, 0.052);
+    border-radius: 0 50px 50px 0;
 }
-
-
 
 .alert {
     position: absolute !important;
@@ -203,10 +207,17 @@ legend{
     margin-bottom: 20px !important;
 }
 .toggleBtn{
-    background-color: darkslateblue;
-    color: white;
+    color: rgb(166, 166, 166);
+    border-radius: 5px;
+    border:white 1px solid;
     padding: 8px 15px;
-    border: 0;
+    border: 1px solid rgba(166, 166, 166, 0.105);
+    background-color: white !important;
+    transition: .5s ease;
+}
+.toggleBtn:hover{
+    border: 1px solid rgba(166, 166, 166, 0.413);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.065);
 }
 .closeBtn{
     background-color: darkslateblue;
@@ -215,13 +226,28 @@ legend{
     border-radius: 50px;
     border: 0;
 }
+.wrapper{
+    background-color: rgba(255, 255, 255, 0.053);
+    padding:10px 2% 5% 2%;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.049),0 0 10px rgba(0, 0, 0, 0.038);
+    border: 1px solid rgba(212, 212, 212, 0.762) !important;
+}
+.wrapper>div{
+    padding: 10px;
+    border-bottom:1px solid rgba(223, 223, 223, 0.205);
+}
 table{
     margin-bottom: 0 !important;
     border: 0 !important;
     outline: none !important;
 }
+tr:not(::last-child){
+    border-bottom: .3px dashed rgba(0, 0, 0, 0.065) !important;
+}
 td{
     border: 0 !important;
+    vertical-align: center;
 }
 /* sidebar  */
 /* tablet and mobile */
@@ -255,20 +281,10 @@ td{
     animation: close-up .5s ease-in-out;
     display: none;
 }
-thead tr{
-    background-color: rgba(0, 0, 0, 0.028);
-    font-weight: 500;
-}
+
 table{
     border: 0 !important;
     outline: none !important;
-}
-td{
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.098);
-    padding: 20px 10px !important;
-}
-@media screen and (max-width:767px) {
-
 }
 .class-dashboard{
     background: var(--dark);
@@ -310,7 +326,7 @@ td{
     position: absolute;
     left: 94%;
     transform: rotate(45deg);
-    background-color: rgb(248, 248, 255);
+    background-color: rgb(255, 255, 255);
 }
 .left-panel button:hover::before{
     content: "";
@@ -319,7 +335,7 @@ td{
     position: absolute;
     left: 94%;
     transform: rotate(45deg);
-    background-color: ghostwhite;
+    background-color: rgb(255, 255, 255);
 }
 .tab{
     border-bottom: 1px solid rgba(0, 0, 0, 0.095);
@@ -342,4 +358,13 @@ td{
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.027);
     border-radius: 10px 10px 0 0;    
+}
+@media screen and (max-width:767px) {
+    body{
+        display: grid;
+        grid-template-columns:auto auto  !important;
+    }
+    .page-content{
+        grid-column: 1/span 3;
+    }
 }
