@@ -37,7 +37,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $sql = "SELECT *,term.id FROM  term
+                            $sql = "SELECT *,term.id,term.active as termActive FROM  term
                             INNER JOIN session
                             ON term.sessionID = session.id
                             lIMIT 10";
@@ -56,7 +56,7 @@
                                             <td>{$row['session_name']}</td>
                                             <td>{$row['start_date']}</td>
                                             <td>{$row['end_date']}</td>
-                                            <td>{$row['active']}</td>
+                                            <td>{$row['termActive']}</td>
                                             <td><a onclick='' href='../form_data/deletedata.php?tbl=term&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
                                                 <a onclick='' href='../form_data/updatedata.php?tbl=term&id=$row[id]'><button class='btn btn-warning' ><i class='fa fa-edit' aria-hidden='true'></i></button></a>                                         
                                             </td>

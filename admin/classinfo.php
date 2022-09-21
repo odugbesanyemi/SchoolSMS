@@ -48,14 +48,13 @@
         </div>
         <div class="class-details d-flex flex-row align-items-center justify-content-center text-center">
             <div class="px-3 border-end">
-                <h5>150</h5>
+                <h5 id="studentCount"></h5>
                 <p class="small">Students</p>
             </div>
             <div class="px-3">
-                <h5>150</h5>
+                <h5 id="subjectCount"></h5>
                 <p class="small">subjects</p>
             </div>
-
         </div>
     </div>
     <section class="row g-0">
@@ -219,7 +218,7 @@
 
 <script>
 // ----------------------------------------------------------------------------
-    // fetch the  class from the Fetch API and render result in the modal dialog class select
+// fetch the  class from the Fetch API and render result in the modal dialog class select
     let classSelect = document.querySelector('#classId')
     let studentSelect = document.querySelector("#student_modal")
     const queryString = window.location.search
@@ -246,7 +245,32 @@
         .catch((error) => (console.log(error)))
 
 // ------------------------------------------------------------------------------ 
-        // update All Students Table
+// get student count 
+    let getStudentCount = () =>{
+        let studentCount = document.querySelector('#studentCount')
+        fetch(`../fetch/getClassStudent.php?studentCount&classid=${classID}`)
+            .then((response) => (response.json())
+                .then((data) => {
+                    studentCount.textContent = data[0]['studentCount']
+                })
+            )
+            .catch((error) => (console.log(error)))    
+    }
+    getStudentCount()
+// get subjects count
+    let getSubjectCount = ()=> {
+        let subjectCount = document.querySelector('#subjectCount')
+        fetch(`../fetch/getClassStudent.php?subjectCount&classid=${classID}`)
+            .then((response) => (response.json())
+                .then((data) => {
+                    subjectCount.textContent = data[0]['subjectCount']
+                })
+            )
+            .catch((error) => (console.log(error)))    
+    }
+    getSubjectCount()
+
+// update All Students Table
     let studentsTable = document.querySelector('#students')
     let updateStudentTable = () => {
         fetch(`../fetch/getClassStudent.php?classStudent&classid=${classID}`)
@@ -279,8 +303,8 @@
             .catch(error => console.log(error))
     }
     updateStudentTable()
-    //-------------------------------------------------------------------------
-    // update Subject_Class Table
+//-------------------------------------------------------------------------
+// update Subject_Class Table
     let subjectTable = document.querySelector('#subjects')
     let updateSubjectTable = () => {
         fetch(`../fetch/getClassStudent.php?classSubject&classid=${classID}`)
@@ -311,8 +335,9 @@
             .catch(error => console.log(error))
     }
     updateSubjectTable()
+    getSubjectCount()    
 //------------------------------------------------------------------------------    
-    // fetch student Modal data 
+// fetch student Modal data 
     let modalStudent = document.querySelector('#student_modal')
     fetch('../fetch/getClassStudent.php?getAllStudents')
         .then((response) => (response.json()
@@ -326,8 +351,8 @@
             })
         ))
         .catch(error => console.log(error))
-    //------------------------------------------------------------------------- 
-    // fetch subjects Modal information
+//------------------------------------------------------------------------- 
+// fetch subjects Modal information
     let subjectList = document.querySelector('#subjectId')
     let teacherList = document.querySelector('#teacherId')
     // subject List
@@ -343,8 +368,8 @@
             })
         )
         .catch((error) => (console.log(error)))
-    //--------------------------------------------------------------------------
-    // Teacher List
+//--------------------------------------------------------------------------
+// Teacher List
     fetch('../fetch/getClassStudent.php?getTeachers')
         .then((response) => (response.json())
             .then((data) => {
@@ -357,8 +382,8 @@
             })
         )
         .catch((error) => (console.log(error)))
-    // -------------------------------------------------------------------------
-    // add student to class submit function
+// -------------------------------------------------------------------------
+// add student to class submit function
     let formElement = document.querySelector('#add_student_class_form')
     let submitBtn = document.querySelector('#addClassStudentBtn')
     let messageCenter = document.querySelector('.messageCenter')
@@ -377,12 +402,13 @@
                 </div>  
             `),
                 updateStudentTable()
+                getStudentCount()                
         }).catch(error => {
             console.log(error)
         })
     }
-    // -------------------------------------------------------------------------
-    // Add subject Data 
+// -------------------------------------------------------------------------
+// Add subject Data 
     let subjectForm = document.querySelector('#add_subject_class_form')
     let subjectSubmit = document.querySelector('#addSubjectStudentBtn')
     subjectSubmit.onclick = (e) => {
@@ -404,8 +430,10 @@
             console.log(error)
         })
     }
-    
+
+
 </script>
 
 <?php
     footer();
+?>

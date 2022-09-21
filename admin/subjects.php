@@ -48,7 +48,7 @@
                                 echo "
                                         <tr>
                                             <td>{$count}</td>
-                                            <td>{$row['name']}</td>
+                                            <td>{$row['title']}</td>
                                             <td>{$row['date_added']}</td>
                                             <td><a onclick='' href='../form_data/deletedata.php?tbl=subjects&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
                                                 <a onclick='' href='../form_data/updatedata.php?tbl=subjects&id=$row[id]'><button class='btn btn-warning' ><i class='fa fa-edit' aria-hidden='true'></i></button></a>                                         

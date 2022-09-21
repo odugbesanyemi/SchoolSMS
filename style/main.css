@@ -2,7 +2,10 @@
 body {
     background-color: rgb(255, 255, 255) !important;
     font-family: 'rubik', sans-serif!important;
+    font-size: 0.8rem !important;  
+    box-sizing: border-box !important;
 }
+
 :root{
     --background:rgba(67, 105, 255, 0.598);
     --dark:darkslateblue;
@@ -10,14 +13,7 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
-body{
-    font-size: 0.8rem !important;
-    display: grid;
-    grid-template-columns: 20% auto 15%;
-}
-body>nav{
-    grid-column: 1 / span 3;
-}
+
 p{
     font-size:13px !important;
 }
@@ -33,7 +29,7 @@ p{
 .lightColor{
     background-color: var(--light);
 }
-* {
+*{
     box-sizing: border-box;
 }
 .form-group{
@@ -53,6 +49,7 @@ p{
 h3{
     margin:0px;
 }
+
 .form-group input,.form-group select,.form-group textarea{
     padding: 10px 15px;
     border: 1px solid rgba(0, 0, 255, 0.203);
@@ -73,6 +70,7 @@ input:focus ,textarea:focus {
 
 .page-content {
     z-index: 0;
+    width: 100%;
 }
 
 .form-group button {
@@ -92,12 +90,14 @@ li {
 
 aside {
     min-height: 100vh !important;
+    min-width: 200px;
 }
 
 .sidebar {
     padding: 50px 0 50px 0;
     list-style-type: none;
     z-index: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.085);
 }
 
 .sidebar>ul {
@@ -228,7 +228,7 @@ legend{
 }
 .wrapper{
     background-color: rgba(255, 255, 255, 0.053);
-    padding:10px 2% 5% 2%;
+    padding:10px 2% 2% 2%;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.049),0 0 10px rgba(0, 0, 0, 0.038);
     border: 1px solid rgba(212, 212, 212, 0.762) !important;
@@ -245,13 +245,19 @@ table{
 
 td{
     border: 0 !important;
-    vertical-align: center;
+    text-justify: center;
+    padding: auto 0;
+    vertical-align: middle;
+    text-align: center;
+    height: 60px  !important;
 }
+
 /* sidebar  */
 /* tablet and mobile */
 /* animation
 1. close up
 2.  */
+
 @keyframes close-up {
     0%{
         height: 100% !important;
@@ -261,6 +267,7 @@ td{
         display: none !important;
     }
 }
+
 @keyframes open-down {
     0%{
         height: 0% !important;
@@ -270,15 +277,22 @@ td{
         height: 100% !important;
     }
 }
+
+.modal{
+    position: fixed !important;
+}
+
 .modal-hide{
     animation: open-down .4s ease-in;
     position: absolute;
 }
+
 .modal-hide{
     position: absolute;    
     animation: close-up .5s ease-in-out;
     display: none;
 }
+
 .modal::before{
     content: "";
     width: 100vw;
@@ -288,10 +302,24 @@ td{
     transform: translateZ(-1px);
     background-color: rgba(0, 0, 0, 0.673);
 }
+
+.modal-open{
+    padding: 0 !important;
+}
+
 table{
     border: 0 !important;
     outline: none !important;
 }
+thead tr{
+ /* background-color:rgba(0, 0, 0, 0.033); */
+ border-bottom: 1px solid rgba(0, 0, 0, 0.088);
+}
+
+tbody tr{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.055);
+}
+
 .class-dashboard{
     background: var(--dark);
     padding:5%;
@@ -301,23 +329,32 @@ table{
     align-items: center;
     justify-content: space-between;
 }
+
+.clas-student-head{
+    box-sizing: border-box !important;
+}
+
 .class-details p,.class-details h5{
     margin: 0;
 }
+
 .left-panel{
     min-height: 100vh;
     /* box-shadow: -10px 0 10px rgba(0, 0, 0, 0.027); */
 }
+
 .left-panel button{
     border-radius: 0 !important;
     border: 0;
     position: relative;
 }
+
 .left-panel button:hover{
     background-color:rgba(0, 0, 0, 0.027) !important;
     color: var(--dark) !important;
     box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.02);
 }
+
 .inview{
     border-radius:0 !important;
     border: 0;
@@ -325,7 +362,8 @@ table{
     background-color: rgba(0, 0, 0, 0.05) !important;
     color: var(--dark)!important;
 }
-.inview::before{
+
+.inview::before {
     content: "";
     width: 20px;
     height: 20px;
@@ -334,7 +372,8 @@ table{
     transform: rotate(45deg);
     background-color: rgb(255, 255, 255);
 }
-.left-panel button:hover::before{
+
+.left-panel button:hover::before {
     content: "";
     width: 20px;
     height: 20px;
@@ -343,21 +382,25 @@ table{
     transform: rotate(45deg);
     background-color: rgb(255, 255, 255);
 }
+
 .tab{
     border-bottom: 1px solid rgba(0, 0, 0, 0.095);
 }
+
 .tab li{
     padding: 15px 15px;
     color: rgba(0, 0, 0, 0.278);
     font-size: 13px;
     min-width:150px;
 }
+
 .tab li:hover{
     border-bottom: 2px solid var(--dark);
     color: black;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.027);
 }
+
 .tab-active{
     border-bottom: 2px solid var(--dark);
     color: var(--dark) !important;
@@ -366,11 +409,5 @@ table{
 }
 
 @media screen and (max-width:767px) {
-    body{
-        display: grid;
-        grid-template-columns:auto auto  !important;
-    }
-    .page-content{
-        grid-column: 1/span 3;
-    }
+
 }
