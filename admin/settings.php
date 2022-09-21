@@ -51,6 +51,7 @@
         for(x of data){
             let option = document.createElement('option')
             option.id = x.id
+            option.value = x.id
             option.textContent = x.session_name
             mySession.append(option)
         }
@@ -59,13 +60,19 @@
         console.log(`this is the ${error}`)
     })
 
-    term.onchange = (e)=>{
+    mySession.onchange = (e)=>{
         e.preventDefault()
-        fetch(`../fetch/getVariable.php?sessionId=${}`,{
-            method:'POST'
-        }).then(response => response.json()
-        .then(term=>{
-            console.log(term)
+        fetch(`../fetch/getVariable.php?sessionId=${mySession.value}`).then(response => response.json()
+        .then(
+            data=>{
+            term.innerHTML =""
+            for(x of data){
+            let option = document.createElement('option')
+            option.id = x.id
+            option.value = x.id
+            option.textContent = x.termName
+            term.append(option)      
+            }      
         })
         )
         .catch(error=>console.log(error))

@@ -3,7 +3,15 @@ session_start();
 include ("../include/dbconnect.php");
 $error = [];
 $message = [];
+
 if(isset($_POST['signinBtn'])){
+    // check for active session
+    $sql = "SELECT * FROM session WHERE active = 1 ORDER BY active DESC";
+    $result = mysqli_query($conn,$sql);
+    $activeSession = "";
+    while($row = mysqli_fetch_array($result)){
+        $activeSession = $row['id'];
+    }
     //meaning the usertype has been selected and continue btn clicked on
     // check if username first exist in the databse
     $userType = $_POST['userType'];
@@ -29,6 +37,7 @@ if(isset($_POST['signinBtn'])){
                 $_SESSION['usertype']=$userType;
                 array_push($message,"successful Login");
                 $_SESSION['message'] = $message;
+                $_SESSION['activeSession']= $activeSession;
                 header("location:../".$userType."/");  
             
             }

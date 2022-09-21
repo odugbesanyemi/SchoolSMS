@@ -49,10 +49,10 @@ function sidebar(){
     echo"
         <aside class='sidebar'>
             <ul class=''>
-                <a href='../dashboard' id='ms'><li><i class='fa fa-dashboard' aria-hidden='true'></i> My Dashboard</li></a>
-                <a href='../manageSession' id='ms'><li><i class='fa fa-wrench' aria-hidden='true'></i> Manage Session</li></a>
-                <a href='../manageAdmin' id=''><li><i class='fa fa-user' aria-hidden='true'></i> Manage Admin</li></a>
-                <a href='../settings_sadmin' id='s'><li><i class='fa fa-gear' aria-hidden='true'></i> Settings</li></a>
+                <a href='../root/dashboard' id='ms'><li><i class='fa fa-dashboard' aria-hidden='true'></i> My Dashboard</li></a>
+                <a href='../root/manageSession' id='ms'><li><i class='fa fa-wrench' aria-hidden='true'></i> Manage Session</li></a>
+                <a href='../root/manageAdmin' id=''><li><i class='fa fa-user' aria-hidden='true'></i> Manage Admin</li></a>
+                <a href='../root/settings_sadmin' id='s'><li><i class='fa fa-gear' aria-hidden='true'></i> Settings</li></a>
                 <a href='../form_data/logout'><li><i class='fa fa-sign-out' aria-hidden='true'></i> Logout</li></a>
             </ul>
             <div class='sidebar-footer'></div>

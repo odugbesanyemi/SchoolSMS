@@ -24,38 +24,38 @@
         <div class="wrapper">
             <div class="title py-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Manage Classes</p>
-                <button class="toggleBtn "><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
+                <button class="toggleBtn"><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
             </div>        
-                <table class="table id="example">
-                    <thead>
-                        <tr>
-                            <td>S/N</td>
-                            <td>Class Name</td>
-                            <td>Roll No</td>                        
-                            <td>Date Created</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            $sql = "SELECT * FROM  class lIMIT 10";
-                            $stmt = mysqli_prepare($conn,$sql);
-                            mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-                            if(mysqli_num_rows($result)>0){
-                                // meaning there is active data then display the data
-                                $count=0;
-                                while($row = mysqli_fetch_array($result)){
-                                    $count++;
-                                echo "
-                                        <a href='classinfo?id={$row['id']}'>
-                                        <tr>
-                                            <td>{$count}</td>
-                                            <td>{$row['className']}</td>
-                                            <td>{$row['roll_no']}</td>
-                                            <td>{$row['dateCreated']}</td>
-                                            <td>
-                                                    <div class='btn-group'>
+            <table class="table" id="example">
+                <thead>
+                    <tr>
+                        <td>S/N</td>
+                        <td>Class Name</td>
+                        <td>Roll No</td>                        
+                        <td>Date Created</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $sql = "SELECT * FROM  class lIMIT 10";
+                        $stmt = mysqli_prepare($conn,$sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                        if(mysqli_num_rows($result)>0){
+                            // meaning there is active data then display the data
+                            $count=0;
+                            while($row = mysqli_fetch_array($result)){
+                                $count++;
+                            echo "
+                                    <a href='classinfo?id={$row['id']}'>
+                                    <tr>
+                                        <td>{$count}</td>
+                                        <td>{$row['className']}</td>
+                                        <td>{$row['roll_no']}</td>
+                                        <td>{$row['dateCreated']}</td>
+                                        <td>
+                                                <div class='btn-group'>
                                                     <button class='btn btn-light btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                                         Actions
                                                     </button>
@@ -64,19 +64,19 @@
                                                         <li><a onclick='' class='dropdown-item' href='../form_data/updatedata?tbl=class&id=$row[id]'><i class='fi fi-rr-pencil me-2'></i>edit</a></li>                                         
                                                         <li><a onclick='' class='dropdown-item' href='classinfo?classid=$row[id]'><i class='fi fi-rs-eye me-2'></i>view</a></li>                                         
                                                     </ul>
-                                                    </div>                                            
-                                            </td>
-                                        </tr>
-                                        </a>
-                                ";
-                                };
-                            }else{
-                                // no data in the data base
-                                echo "Add a new Class";
-                            }
-                        ?>                    
-                    </tbody>
-                </table>       
+                                                </div>                                            
+                                        </td>
+                                    </tr>
+                                    </a>
+                            ";
+                            };
+                        }else{
+                            // no data in the data base
+                            echo "Add a new Class";
+                        }
+                    ?>                    
+                </tbody>
+            </table>       
         </div>
 
 
