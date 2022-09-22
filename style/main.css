@@ -373,15 +373,6 @@ tbody tr{
     background-color: rgb(255, 255, 255);
 }
 
-.left-panel button:hover::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    left: 94%;
-    transform: rotate(45deg);
-    background-color: rgb(255, 255, 255);
-}
 
 .tab{
     border-bottom: 1px solid rgba(0, 0, 0, 0.095);

@@ -70,7 +70,7 @@
             </button>
         </div>
         <div class="right-panel col-md-11" id="panelView">
-            <div class="" data-id="class_students">
+            <div class="collapse" data-id="class_students">
                 <div class="clas-student-head container pb-2 pt-5 px-5">
                     <h4 class="">Students</h4>
                     <p class="text-secondary text-opacity-50">Here, you can view, manage and add students enrolled to
@@ -199,8 +199,7 @@
                                                 <select name="teacherId" id="teacherId" class="w-100"></select>
                                             </div>
                                             <button id="addSubjectStudentBtn" name='submitBtn'
-                                                class="btn btn-warning"><i class="fi fi-rr-add me-1"
-                                                    aria-hidden="true"></i>Continue</button>
+                                                class="btn btn-warning"><i class="fi fi-rr-add me-1" aria-hidden="true"></i>Continue</button>
                                         </form>
                                     </div>
                                 </div>
@@ -209,7 +208,75 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" data-id="class_payments"></div>
+            <div class="" data-id="class_payments">
+                <div class="clas-student-head container pb-2 pt-5 px-5 ">
+                    <h4 class="">CLASS PAYMENTS</h4>
+                    <p class="text-secondary text-opacity-50 w-75">Manage Payments Type for Class and cost for individual Payments. View payment Status, Approve Payment request and many more.</p>
+                </div>
+                <!-- this is where we will view and add students to a class -->
+                <div class="container">
+                    <ul class="tab d-flex ps-0 mx-3" id="tab">
+                        <li class="tab-active" id="overview">Overview</li>
+                        <li class="tab" id="pstatus">Payment Status</li>
+                    </ul>
+                    <div id="tabview">
+                        <div class="overview" data-id="overview">
+                            <div class="container">
+                                <div class="wrapper">
+                                    <div class="title py-1 d-flex justify-content-between align-items-center">
+                                        <p class="m-0"></p>
+                                        <button class="toggleBtn" data-bs-toggle="modal"
+                                            data-bs-target="#addClassPayment"><i class="fi fi-rr-add me-1"
+                                                aria-hidden="true"></i> Add new</button>
+                                    </div>
+                                    <div class="">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <td>S/N</td>
+                                                    <td>Payment Type</td>
+                                                    <td>Payment Cost</td>
+                                                    <td>Payment Description</td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="payments">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="addClassPayment" data-bs-backdrop="false" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Manage Payment</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body px-4 pt-1 pb-4">
+                                        <form id="add_payment_class_form">
+                                            <span class="messageCenter"></span>
+                                            <div class="form-group">
+                                                <label for="paymentId">Choose Payment Type</label>
+                                                <Select id="paymentId" name="paymentId" class="w-100"></Select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="paymentCost">Enter Cost</label>
+                                                <input type="number" name="paymentCost" id="paymentCost" class="w-100">
+                                            </div>
+                                            <button id="addPaymentStudentBtn" name='submitBtn'
+                                                class="btn btn-warning"><i class="fi fi-rr-add me-1" aria-hidden="true"></i>Continue</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
         </div>
     </section>
 
@@ -268,7 +335,6 @@
             )
             .catch((error) => (console.log(error)))    
     }
-    getSubjectCount()
 
 // update All Students Table
     let studentsTable = document.querySelector('#students')
@@ -337,6 +403,39 @@
     updateSubjectTable()
     getSubjectCount()    
 //------------------------------------------------------------------------------    
+// update class_Payment table
+    let paymentTable = document.querySelector('#payments')
+    let updatePaymentTable = () => {
+        fetch(`../fetch/getClassStudent.php?classPayment&classid=${classID}`)
+            .then(response => response.json())
+            .then(data => {
+                let count = 0
+                paymentTable.textContent = ""
+                for (const x of data) {
+                    count++
+                    let tr = document.createElement('tr')
+                    tr.innerHTML =
+                        `
+                            <td>${count}</td>
+                            <td>${x['type']}</td>
+                            <td>${x['amount']}</td>
+                            <td>${x['description']}</td>
+                            <div class='btn-group'>
+                                <button class='btn btn-light btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Actions
+                                </button>
+                                <ul class='dropdown-menu'>
+                                    <li><a onclick='' class='dropdown-item' href='../form_data/deletedata?tbl=class&id={$row['id']}'><i class='fi fi-rs-trash me-2'></i>Delete</a></li>
+                                </ul>
+                            </div>                                
+                    `
+                    paymentTable.appendChild(tr)
+                }
+            })
+            .catch(error => console.log(error))
+    }
+    updatePaymentTable()      
+// ---------------------------------------------------------------------------
 // fetch student Modal data 
     let modalStudent = document.querySelector('#student_modal')
     fetch('../fetch/getClassStudent.php?getAllStudents')
@@ -369,6 +468,20 @@
         )
         .catch((error) => (console.log(error)))
 //--------------------------------------------------------------------------
+// fetch payment type modal list
+    let paymentType = document.querySelector('#paymentId')
+    fetch('../fetch/getClassStudent.php?getPaymentType')
+        .then((response) => (response.json())
+            .then((data) => {
+                for (const x of data) {
+                    let option = document.createElement('option')
+                    option.textContent = `${x.type}`
+                    option.value = x.id
+                    paymentType.append(option)
+                }
+            })
+        )
+        .catch((error) => (console.log(error)))
 // Teacher List
     fetch('../fetch/getClassStudent.php?getTeachers')
         .then((response) => (response.json())
@@ -426,11 +539,34 @@
                 </div>  
             `),
                 updateSubjectTable()
+                getSubjectCount()                  
         }).catch(error => {
             console.log(error)
         })
     }
-
+// ------------------------------------------------------------------------------
+// add payment data
+    let paymentForm = document.querySelector('#add_payment_class_form')
+    let paymentSubmit = document.querySelector('#addPaymentStudentBtn')
+    paymentSubmit.onclick = (e) => {
+        e.preventDefault()
+        let formData = new FormData(paymentForm)
+        fetch(`../fetch/getClassStudent.php?addPayment_class&classid=${classID}`, {
+            method: 'POST',
+            body: formData
+        }).then(response => response.text()).then(response => {
+            // THIS SHOULD RETURN A SUCCESS MESSAGE
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class='alert alert-white alert-dismissible fade show position-fixed' role='alert'>
+                    <strong>New Notification!</strong> ${response}
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>  
+            `),
+                updatePaymentTable()                
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
 </script>
 

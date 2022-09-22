@@ -6,7 +6,7 @@ $message = [];
 if(isset($_POST['addteacher'])){
     //meaning the addAdmin was clicked
     // check if name first exist in the databse
-    $sql = "SELECT * FROM teachers WHERE username = ?";
+    $sql = "SELECT * FROM teacher WHERE username = ?";
     $stmt = mysqli_prepare($conn,$sql);
     mysqli_stmt_bind_param($stmt,"s",$paramName);
     $paramName = $_POST['username'];
@@ -20,7 +20,7 @@ if(isset($_POST['addteacher'])){
     }else{
         // meaning there is no such data in the database
         // send the data to the database
-        $sql = "INSERT INTO teachers(`name`,username,`password`,phone,email) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO teacher(`name`,username,`password`,phone,email) VALUES (?,?,?,?,?)";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt,"sssss",$paramfullName,$paramusername,$paramPassword,$paramphone,$paramemail);
         $paramfullName = $_POST['name'];

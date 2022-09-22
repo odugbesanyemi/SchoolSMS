@@ -17,11 +17,10 @@
 
 <div class="page-content">
     <section class="container" style="padding:5%">
-
         <div class="wrapper">
             <div class="title py-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Manage Students</p>
-                <button class="toggleBtn "><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
+                <button class="toggleBtn" data-bs-toggle="modal" data-bs-target="#addstudents""><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
             </div>        
             <div class="mt-1 list-session table-responsive">
                 <table class="table">
@@ -67,60 +66,64 @@
                             }
                         ?>                    
                     </tbody>
-
                 </table>
             </div>
         </div>
-        <div class="addSession mt-2">
-            <form action="../form_data/add_student.php" method="POST">
-                <fieldset class=" p-4">
-                    <div class="d-flex align-items-center">
-                        <legend class="mb-0">Add New Student</legend>
-                        <div class="closeBtn rounded-2">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </div>                        
+        <div class="modal fade" id="addstudents" data-bs-backdrop="false" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add New Student</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="name">Name</label>
-                        <input type="text" name="student_name" id="name" required>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="name" >Gender</label>
-                        <div class="radio-group p-3" >
-                            <label for="male" class="radio me-3">Male</label>
-                            <input type="radio" name="student_gender" id="male" value="male" checked required>
-                            <label for="female" class="radio ms-3 me-3">Female</label>
-                            <input type="radio" name="student_gender" id="female" value="female" required>                            
-                        </div>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="username">Username</label>
-                        <input type="text" name="student_username" id="username" required>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="password">Password</label>
-                        <input type="text" name="student_password" id="password" required>
-                    </div>                       
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="regNo">Registration Number</label>
-                        <input type="text" name="reg_no" id="regNo" required>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" name="student_phone" id="phone">
-                    </div>                                                                                   
-                          <!--retrieve databse value into select  -->  
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="email">Email Address</label>
-                        <input type="email" name="student_email" id="email" >
-                    </div>  
-                    <div class="btn-group">
-                        <button class="btn btn-outline-primary" name="addStudent" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
-                    </div>                                                                                                                                                                                                      
-                </fieldset>
-            </form>
-        </div>
-
+                    <div class="modal-body px-4 pt-1 pb-4">
+                        <form action="../form_data/add_student.php" method="POST">
+                            <fieldset class=" p-2">
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="student_name" id="name" required class="w-100">
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="name" >Gender</label>
+                                    <div class="radio-group p-3" >
+                                        <label for="male" class="radio me-3">Male</label>
+                                        <input type="radio" name="student_gender" id="male" value="male" checked required>
+                                        <label for="female" class="radio ms-3 me-3">Female</label>
+                                        <input type="radio" name="student_gender" id="female" value="female" required>                            
+                                    </div>
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="student_username" id="username" required class="w-100">
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="password">Password</label>
+                                    <input type="text" name="student_password" id="password" required class="w-100">
+                                </div>                       
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="regNo">Registration Number</label>
+                                    <input type="text" name="reg_no" id="regNo" required class="w-100">
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" name="student_phone" id="phone" class="w-100">
+                                </div>                                                                                   
+                                    <!--retrieve databse value into select  -->  
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="student_email" id="email" class= w-100>
+                                </div>  
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary" name="addStudent" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
+                                </div>                                                                                                                                                                                                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </section>
     <footer></footer>    
 </div>

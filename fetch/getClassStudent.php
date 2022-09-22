@@ -36,6 +36,7 @@ if(isset($_GET['getModal'])){
         }
         echo(json_encode($data));
     }
+
 // Update class subject
     if (isset($_GET['classSubject'])) {
         $sql = "SELECT * FROM  class_subject 
@@ -64,6 +65,7 @@ if(isset($_GET['getModal'])){
         echo(json_encode($data));
     }
     
+// get All Students
 
     if (isset($_GET['getAllStudents'])) {
         $sql = "SELECT * FROM student";
@@ -103,7 +105,6 @@ if(isset($_GET['getModal'])){
     }
 // -----------------------------------------------------
 // add Subjects to class
-
     if (isset($_GET['addSubject_class'])) {
         // check if data already exists
         $sql = "SELECT * FROM class_subject 
@@ -177,18 +178,92 @@ if(isset($_GET['getModal'])){
         echo json_encode($studentCount);
     }
 // get class subject count
-if (isset($_GET['subjectCount'])) {
-    $sql = "SELECT count(*) AS subjectCount FROM class_subject WHERE classID =? AND sessionID = ?";
-    $stmt = mysqli_prepare($conn,$sql);
-    mysqli_stmt_bind_param($stmt,"ii",$paramClassId, $paramSessionId);
-    $paramClassId = $_GET['classid'];
-    $paramSessionId = $_SESSION['activeSession'];
-    mysqli_stmt_execute($stmt);
-    $result=mysqli_stmt_get_result($stmt);
-    $subjectCount = [];
-    while ($row = mysqli_fetch_array($result)){
-        array_push($subjectCount, $row);
+    if (isset($_GET['subjectCount'])) {
+        $sql = "SELECT count(*) AS subjectCount FROM class_subject WHERE classID =? AND sessionID = ?";
+        $stmt = mysqli_prepare($conn,$sql);
+        mysqli_stmt_bind_param($stmt,"ii",$paramClassId, $paramSessionId);
+        $paramClassId = $_GET['classid'];
+        $paramSessionId = $_SESSION['activeSession'];
+        mysqli_stmt_execute($stmt);
+        $result=mysqli_stmt_get_result($stmt);
+        $subjectCount = [];
+        while ($row = mysqli_fetch_array($result)){
+            array_push($subjectCount, $row);
+        }
+        echo json_encode($subjectCount);
     }
-    echo json_encode($subjectCount);
-}
+// get payment data
+    if (isset($_GET['getPaymentType'])) {
+        $sql = "SELECT * FROM payment";
+        $result = mysqli_query($conn, $sql);
+        $paymentData = [];
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($paymentData, $row);
+        }
+        echo(json_encode($paymentData));
+    }
+
+// Update class payment
+    if (isset($_GET['classPayment'])) {
+        $sql = "SELECT * FROM  class_payment 
+                INNER JOIN class
+                ON classID = class.id
+                INNER JOIN payment
+                ON paymenttypeID = payment.id
+                INNER JOIN session
+                ON sessionID = session.id
+                WHERE classID = ? AND session.active = 1
+                lIMIT 10";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $paramClassId);
+        $paramClassId = $_GET['classid'];
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = [];
+        if (mysqli_num_rows($result)>0) {
+            // meaning there is active data then display the data
+            while ($row = mysqli_fetch_array($result)) {
+                array_push($data, $row);
+            }
+        }
+        echo(json_encode($data));
+
+    }
+// ---------------------------------------------------------------------------
+// add payment to class
+
+    if (isset($_GET['addPayment_class'])) {
+        // check if data already exists
+        $sql = "SELECT * FROM class_payment 
+        INNER JOIN session 
+        ON sessionID = session.id
+        INNER JOIN payment
+        ON paymenttypeID = payment.id
+        WHERE paymenttypeID = ? AND session.active = 1 AND classId = ?";
+        // meaning data already exists in this particular class as no class can have the same payment twice
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ii", $parampaymentId, $paramClassId);
+        $parampaymentId = $_POST['paymentId'];
+        $paramClassId = $_GET['classid'];
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result)>0) {
+            // meaning data already Exists return Error
+            echo 'payment Cannot be assigned to Same teacher more than once';
+        } else {
+            $sql = "INSERT INTO class_payment(paymenttypeID,classID,sessionID,amount) VALUES(?,?,?,?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "iiii", $parampaymentId, $paramClassId, $paramSessionId, $paramAmount);
+            $parampaymentId = $_POST['paymentId'];
+            $paramClassId = $_GET['classid'];
+            $paramSessionId = $_SESSION['activeSession'];
+            $paramAmount = $_POST['paymentCost'];
+            $result = mysqli_stmt_execute($stmt);
+            if ($result) {
+                // meaning the operation was successfull
+                echo 'successfully added payment';
+            }
+        }
+    }
+
 ?>
