@@ -20,7 +20,7 @@
         <div class="wrapper">
             <div class="title py-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Manage Terms</p>
-                <button class="toggleBtn "><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
+                <button class="toggleBtn" data-bs-toggle="modal" data-bs-target="#addterms"><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
             </div>       
             <div class="mt-1 list-session table-responsive">
                 <table class="table">
@@ -57,8 +57,17 @@
                                             <td>{$row['start_date']}</td>
                                             <td>{$row['end_date']}</td>
                                             <td>{$row['termActive']}</td>
-                                            <td><a onclick='' href='../form_data/deletedata.php?tbl=term&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
-                                                <a onclick='' href='../form_data/updatedata.php?tbl=term&id=$row[id]'><button class='btn btn-warning' ><i class='fa fa-edit' aria-hidden='true'></i></button></a>                                         
+                                            <td>
+                                                <div class='btn-group'>
+                                                    <button class='btn btn-light btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                        Actions
+                                                    </button>
+                                                    <ul class='dropdown-menu'>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/deletedata?tbl=term&id={$row['id']}'><i class='fi fi-rs-trash me-2'></i>Delete</a></li>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/updatedata?tbl=term&id=$row[id]'><i class='fi fi-rr-pencil me-2'></i>edit</a></li>                                         
+                                                        <li><a onclick='' class='dropdown-item' href='classinfo?classid=$row[id]'><i class='fi fi-rs-eye me-2'></i>view</a></li>                                         
+                                                    </ul>
+                                                </div>                                             
                                             </td>
                                         </tr>
                                 ";
@@ -73,51 +82,57 @@
                 </table>
             </div>
         </div>
-        <div class="addSession mt-2">
-            <form action="../form_data/add_term.php" method="POST">
-                <fieldset class=" p-4">
-                    <div class="d-flex align-items-center">
-                        <legend class="mb-0">Add New Term</legend>
-                        <div class="closeBtn rounded-2">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </div>                        
+        <div class="modal fade" id="addterms" data-bs-backdrop="false" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add New Terms</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="name">Term Name</label>
-                        <input type="text" name="term_name" id="name" required>
-                    </div>   
-                          <!--retrieve databse value into select  -->
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="session">Session</label>
-                        <select name="session" id="session">
-                            <option selected >Choose Session</option>
-                            <?php 
-                                $sql = 'SELECT * from session';
-                                $result = mysqli_query($conn,$sql);
-                                while($row = mysqli_fetch_array($result)){
-                                    echo "
-                                        <option value={$row['id']}> {$row['session_name']} </option>
-                                    ";
-                                }
-                            ?>
-                        </select>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="end_Date">Term End Date</label>
-                        <input type="date" name="end_Date" id="end_Date" >
-                    </div> 
-                    <div class="form-group me-md-3 mb-3">
-                        <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>                            
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="admin_active">
-                        </div>
-                    </div> 
-                    <div class="btn-group">
-                        <button class="btn btn-outline-primary" name="addTerm" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
-                    </div>                                                                                                                                                                                                      
-                </fieldset>
-            </form>
-        </div>
+                    <div class="modal-body px-4 pt-1 pb-4">
+                        <form action="../form_data/add_term.php" method="POST">
+                            <fieldset class=" p-2">
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="name">Term Name</label>
+                                    <input type="text" name="term_name" id="name" required class="w-100">
+                                </div>   
+                                    <!--retrieve databse value into select  -->
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="session">Session</label>
+                                    <select name="session" id="session" class="w-100">
+                                        <option selected >Choose Session</option>
+                                        <?php 
+                                            $sql = 'SELECT * from session';
+                                            $result = mysqli_query($conn,$sql);
+                                            while($row = mysqli_fetch_array($result)){
+                                                echo "
+                                                    <option value={$row['id']}> {$row['session_name']} </option>
+                                                ";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="end_Date">Term End Date</label>
+                                    <input type="date" name="end_Date" id="end_Date" class="w-100">
+                                </div> 
+                                <div class="form-group me-md-3 mb-3">
+                                    <div class="form-check form-switch d-flex align-items-center p-0 w-50">
+                                    <label class="form-check-label d-block w-75" for="flexSwitchCheckDefault">Set as active</label>                            
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="admin_active">
+                                    </div>
+                                </div> 
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary" name="addTerm" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
+                                </div>                                                                                                                                                                                                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>         
 
     </section>
     <footer></footer>    

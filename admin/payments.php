@@ -22,7 +22,7 @@
         <div class="wrapper">
             <div class="title py-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Manage Payments</p>
-                <button class="toggleBtn "><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
+                <button class="toggleBtn" data-bs-toggle="modal" data-bs-target="#addpayment"><i class="fi fi-rr-add me-1" aria-hidden="true"></i> Add new</button>
             </div>     
             <div class="mt-1 list-sessiontable-responsive">
                 <table class="table">
@@ -50,8 +50,17 @@
                                             <td>{$count}</td>
                                             <td>{$row['type']}</td>
                                             <td>{$row['description']}</td>
-                                            <td><a onclick='' href='../form_data/deletedata.php?tbl=payment&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
-                                                <a onclick='' href='../form_data/updatedata.php?tbl=payment&id=$row[id]'><button class='btn btn-warning' ><i class='fa fa-edit' aria-hidden='true'></i></button></a>                                         
+                                            <td>
+                                                <div class='btn-group'>
+                                                    <button class='btn btn-light btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                        Actions
+                                                    </button>
+                                                    <ul class='dropdown-menu'>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/deletedata?tbl=payment&id={$row['id']}'><i class='fi fi-rs-trash me-2'></i>Delete</a></li>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/updatedata?tbl=payment&id=$row[id]'><i class='fi fi-rr-pencil me-2'></i>edit</a></li>                                         
+                                                        <li><a onclick='' class='dropdown-item' href='classinfo?classid=$row[id]'><i class='fi fi-rs-eye me-2'></i>view</a></li>                                         
+                                                    </ul>
+                                                </div>                                             
                                             </td>
                                         </tr>
                                 ";
@@ -66,30 +75,35 @@
                 </table>
             </div>
         </div>
-        <div class="addPayment mt-2 show">
-            <form action="../form_data/add_payments.php" method="POST">
-                <fieldset class=" p-4">
-                    <div class="d-flex align-items-center">
-                        <legend class="mb-0">Add New Payment</legend>
-                        <div class="closeBtn rounded-2">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </div>                        
+        <div class="modal fade" id="addpayment" data-bs-backdrop="false" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add New Payment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <hr class="mb-5">
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="type">Payment Type</label>
-                        <input type="text" name="payment_type" id="type" required>
-                    </div>   
-                    <div class="form-group me-md-3 mb-3">
-                        <label for="desc">Payment Description</label>
-                        <textarea name="payment_desc" id="desc" cols="30" rows="3" required></textarea>
-                    </div>                                                          
-                    <div class="btn-group">
-                        <button class="btn btn-outline-primary" name="addPayment" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
-                    </div>                                                                                                                                                                                                      
-                </fieldset>
-            </form>
-        </div>
+                    <div class="modal-body px-4 pt-1 pb-4">
+                        <form action="../form_data/add_payments.php" method="POST">
+                            <fieldset class=" p-2">
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="type">Payment Type</label>
+                                    <input type="text" name="payment_type" id="type" required class="w-100" placeholder="i.e Tuition, Transportation">
+                                </div>   
+                                <div class="form-group me-md-3 mb-3">
+                                    <label for="desc">Payment Description</label>
+                                    <textarea name="payment_desc" id="desc" cols="30" rows="3" required class="w-100" placeholder="...Usually Paid every Term."></textarea>
+                                </div>                                                          
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary" name="addPayment" type="submit"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
+                                </div>                                                                                                                                                                                                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>          
 
     </section>
     <footer></footer>    

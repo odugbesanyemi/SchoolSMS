@@ -54,8 +54,17 @@
                                             <td>{$row['reg_no']}</td>
                                             <td>{$row['email']}</td>
                                             <td>{$row['phone']}</td>
-                                            <td><a onclick='' href='../form_data/deletedata.php?tbl=student&id={$row['id']}'><button class='btn btn-danger' ><i class='fa fa-trash' aria-hidden='true'></i></button></a>
-                                                <a onclick='' href='../form_data/updatedata.php?tbl=student&id=$row[id]'><button class='btn btn-warning' ><i class='fa fa-edit' aria-hidden='true'></i></button></a>                                         
+                                            <td>
+                                                <div class='btn-group'>
+                                                    <button class='btn btn-light btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                        Actions
+                                                    </button>
+                                                    <ul class='dropdown-menu'>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/deletedata?tbl=student&id={$row['id']}'><i class='fi fi-rs-trash me-2'></i>Delete</a></li>
+                                                        <li><a onclick='' class='dropdown-item' href='../form_data/updatedata?tbl=student&id=$row[id]'><i class='fi fi-rr-pencil me-2'></i>edit</a></li>                                         
+                                                        <li><a onclick='' class='dropdown-item' href='classinfo?classid=$row[id]'><i class='fi fi-rs-eye me-2'></i>view</a></li>                                         
+                                                    </ul>
+                                                </div>                                             
                                             </td>
                                         </tr>
                                 ";
