@@ -70,7 +70,7 @@
             </button>
         </div>
         <div class="right-panel col-md-11" id="panelView">
-            <div class="collapse" data-id="class_students">
+            <div class="" data-id="class_students">
                 <div class="clas-student-head container pb-2 pt-5 px-5">
                     <h4 class="">Students</h4>
                     <p class="text-secondary text-opacity-50">Here, you can view, manage and add students enrolled to
@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div class="" data-id="class_payments">
+            <div class="collapse" data-id="class_payments">
                 <div class="clas-student-head container pb-2 pt-5 px-5 ">
                     <h4 class="">CLASS PAYMENTS</h4>
                     <p class="text-secondary text-opacity-50 w-75">Manage Payments Type for Class and cost for individual Payments. View payment Status, Approve Payment request and many more.</p>

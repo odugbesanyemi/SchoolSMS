@@ -39,15 +39,17 @@
         echo "
             </section>
             </body>
-                <script src ='../js/main.js'></script>
-                <script src ='../js/app.js'></script>
                 <script src='https://code.jquery.com/jquery-3.6.1.min.js' integrity='sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=' crossorigin='anonymous'></script>
+                <script src='https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js' integrity='sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=' crossorigin='anonymous'></script>
                 <script type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
                 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>    
+                <script src ='../js/main.js'></script>
+                <script src ='../js/app.js'></script>            
             </html>
         ";
     }
 // sidebar function
+
     function sidebar(){
         echo"
             <aside class='sidebar'>
@@ -62,6 +64,7 @@
             </aside>
         ";
     }
+
 // adminsidebar function
     function adminsidebar(){
         echo"
@@ -78,6 +81,7 @@
                     <a href='../admin/parents'><li><i class='fi fi-rr-briefcase' aria-hidden='true'></i>Parents</li></a>
                     <a href='../admin/adminMessages'><li><i class='fi fi-rs-paper-plane' aria-hidden='true'></i> Messages</li></a>
                     <a href='../admin/staff_Management'><li><i class='fi fi-rr-briefcase' aria-hidden='true'></i> Staff</li></a>
+                    <a href='../admin/events'><li><i class='fi fi-rs-calendar-check' aria-hidden='true'></i> Manage Events</li></a>
                     <a href='../admin/settings'><li><i class='fi fi-rr-settings'></i>Settings</li></a>
                     <a href='../form_data/logout'><li><i class='fi fi-rs-sign-out-alt' aria-hidden='true'></i> Logout</li></a>
                 </ul>

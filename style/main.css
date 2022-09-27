@@ -398,7 +398,28 @@ tbody tr{
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.027); 
 }
-
+/* finance */
+.stat-panel{
+    gap: 10px;
+}
+.stat-tab{
+    min-width:300px;
+    min-height: 100px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.036);
+    padding: 0 !important;
+    box-shadow: 0 5px 0px rgba(0, 0, 0, 0.148);
+}
+.stat-tab-footer{
+    padding:10px;
+}
+.stat-tab-body{
+    padding:20px;
+}
 @media screen and (max-width:767px) {
 
 }
