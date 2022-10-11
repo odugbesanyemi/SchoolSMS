@@ -6,7 +6,7 @@ $message = [];
 if(isset($_POST['addSubject'])){
     //meaning the addTerm was clicked
     // check if name first exist in the databse
-    $sql = "SELECT * FROM subjects WHERE name = ?";
+    $sql = "SELECT * FROM subjects WHERE title = ?";
     $stmt = mysqli_prepare($conn,$sql);
     mysqli_stmt_bind_param($stmt,"s",$paramName);
     $paramName = $_POST['subject_name'];
@@ -20,7 +20,7 @@ if(isset($_POST['addSubject'])){
     }else{
         // meaning there is no such data in the database
         // send the data to the database
-        $sql = "INSERT INTO subjects(name) VALUES(?)";
+        $sql = "INSERT INTO subjects(title) VALUES(?)";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt,"s",$paramName);
         $paramName = $_POST['subject_name'];

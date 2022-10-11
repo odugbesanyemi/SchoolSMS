@@ -21,15 +21,55 @@
                 <title>{$title}</title>
             </head>
             <body class=''>
-                <nav class='navbar bg-dark navbar-dark'>
+                <nav class='navbar bg-white navbar-white'>
                     <div class='container-fluid'>
-                        <a class='navbar-brand'><img src='../assets/images/kingsmeadlogo.jpg' alt='' width='50' class='rounded rounded-pill'> School Management System</a>
-                        <form class='d-flex' role='search'>
-                        <input class='form-control me-2' type='search' placeholder='Search' aria-label='Search'>
-                        <button class='btn btn-outline-success' type='submit'>Search</button>
-                        </form>
+                        <div class='d-flex flex-row justify-content-between align-items-center w-100'>
+                            <div>
+                                <a class='navbar-brand d-flex align-items-center'><img src='../assets/images/kingsmeadlogo.jpg' alt='' width='50'><span class='d-none d-md-block mb-0'> KINGSMEAD</span></a>
+                            </div>
+                            <div class='d-flex flex-row align-items-center justify-content-center w-100'>
+                                <div class='nav-toggle px-4'>
+                                    <i class='fi fi-rr-menu-burger fs-4'></i>                                
+                                </div>
+                                <form class='d-flex' role='search'>
+                                    <input class='form-control me-2 rounded-1' type='search' placeholder='Search' aria-label='Search'>
+                                </form>   
+                            </div>
+                            <div class='user-info d-flex flex-row align-items-center w-100'>
+                                <div class='notification position-relative ms-auto mx-4'>
+                                    <div data-bs-toggle = 'dropdown'>
+                                        <i class='fi fi-rr-bell fs-4'></i>
+                                        <p class='position-absolute bg-warning rounded rounded-circle mb-0 text-white px-1 top-0 start-100 translate-middle'><small>23</small></p>
+                                    </div>
+                                    <ul class='dropdown-menu'>
+                                        <li class =''></li>
+                                    </ul>                                    
+                                </div>
+                                <div class='message position-relative' role='button'>
+                                    <div class='' data-bs-toggle ='dropdown'>
+                                        <i class='fi fi-rr-comment-alt fs-4'></i>
+                                        <p class='position-absolute bg-primary rounded rounded-circle mb-0 text-white px-1 top-0 start-100 translate-middle'><small>23</small></p>
+                                    </div>
+                                    <ul class='dropdown-menu'>
+                                        <li class ='d-flex flex-row align-items-center'>
+                                            <img src='../assets/images/kingsmeadlogo.jpg' alt='' class='me-2 rounded rounded-circle' width='30' height = '30'>
+                                            <p class = 'text-secondary'>lorem ipsum dolor liter</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class='user-data btn-group'>
+                                    <img src='../admin/img/krunal-mistry-becBmRX__C4-unsplash.jpg' alt='' role='button' data-bs-toggle='dropdown' class='userprofile rounded-circle mx-4 border' width='50' height='50' >
+                                    <ul class='dropdown-menu'>
+                                        <li class ='disabled fs-6'>Odugbesan Oluyemi Olalekan</li>
+                                        <li> <i class='fi fi-rr-user pe-2'></i> profile</li>
+                                        <li><i class='fi fi-rr-interrogation pe-2'></i> Need help?</li>
+                                        <li><i class='fi fi-rr-sign-out-alt pe-2'></i>Logout</li>
+                                    </ul>
+                                </div>
+                            </div>                     
+                        </div>
                     </div>
-                </nav>
+                </nav> 
                 <section class='content-wrapper d-flex flex-column flex-md-row'>         
         "           
         );
@@ -41,6 +81,8 @@
             </body>
                 <script src='https://code.jquery.com/jquery-3.6.1.min.js' integrity='sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=' crossorigin='anonymous'></script>
                 <script src='https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js' integrity='sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=' crossorigin='anonymous'></script>
+                <script src='https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js'></script>
+                <script src='https://cdn.jsdelivr.net/npm/apexcharts'></script>                
                 <script type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
                 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>    
                 <script src ='../js/main.js'></script>
@@ -70,7 +112,7 @@
         echo"
             <aside class='sidebar'>
                 <ul class=''>
-                    <a href='../admin/index' id='ms'><li><i class='fi fi-rr-home' aria-hidden='true'></i> My Dashboard</li></a>
+                    <a href='../admin/index' id='ms'><li><i class='fi fi-rr-home' aria-hidden='true'></i> Dashboard</li></a>
                     <a href='../admin/class' id='ms'><li><i class='fi fi-rs-presentation' aria-hidden='true'></i>Class</li></a>
                     <a href='../admin/teachers' id=''><li><i class='fi fi-rr-id-badge' aria-hidden='true'></i> Teachers</li></a>
                     <a href='../admin/students' id='s'><li><i class='fi fi-rr-graduation-cap' aria-hidden='true'></i> Students</li></a>

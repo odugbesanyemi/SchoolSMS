@@ -21,6 +21,15 @@
 
 <div class="page-content">
     <section class="container" style="padding:5%">
+        <div class= "jumbotron">
+            <h4>Manage Classes</h4>
+            <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Classes</li>
+                </ol>
+            </nav>      
+        </div>
         <div class="wrapper">
             <div class="title py-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Manage Classes</p>
